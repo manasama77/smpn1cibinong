@@ -13,12 +13,22 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
             $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('nama_lengkap');
+            $table->enum('kelas', [7, 8, 9])->nullable();
+            $table->enum('role', ['admin', 'kepala sekolah', 'guru', 'orang tua wali', 'siswa']);
+            $table->string('nisn')->nullable();
+            $table->string('no_hp');
+            $table->string('no_ktp_orang_tua_wali')->nullable();
+            $table->string('nama_orang_tua_wali')->nullable();
+            $table->string('no_hp_orang_tua')->nullable();
             $table->rememberToken();
             $table->timestamps();
+            $table->softDeletes();
+            $table->integer('created_by')->default(1);
+            $table->integer('updated_by')->nullable();
+            $table->integer('deleted_by')->nullable();
         });
     }
 
