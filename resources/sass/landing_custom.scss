@@ -1,0 +1,37 @@
+.logo {
+    text-decoration: none;
+    color: whitesmoke;
+
+    .img-logo {
+        width: auto;
+        height: 70px !important;
+        max-height: 70px !important;
+    }
+
+    span {
+        text-decoration: none;
+        font-size: 1.5rem;
+    }
+}
+
+#hero {
+    width: 100%;
+    height: 100vh;
+    background: url("../../public/storage/heroes_bg.jpg") top center;
+    background-size: cover;
+    position: relative;
+}
+
+@media only screen and (max-width: 576px) {
+    .info {
+        margin-top: 20px;
+    }
+
+    .logo {
+        .img-logo {
+            width: auto;
+            height: 70px !important;
+            max-height: 70px !important;
+        }
+    }
+}

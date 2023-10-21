@@ -16,6 +16,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [LandingPageController::class, 'index'])->name('home');
+Route::get('/profil-sekolah', [LandingPageController::class, 'profil_sekolah'])->name('profil_sekolah');
+Route::get('/informasi-kegiatan', [LandingPageController::class, 'informasi_kegiatan'])->name('informasi_kegiatan');
+Route::get('/galeri', [LandingPageController::class, 'galeri'])->name('galeri');
 
 Auth::routes();
 
