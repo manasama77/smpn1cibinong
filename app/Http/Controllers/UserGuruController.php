@@ -6,20 +6,20 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class UserAdminController extends Controller
+class UserGuruController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $lists = User::where('role', 'admin')->orderBy('nama_lengkap', 'asc')->get();
+        $lists = User::where('role', 'guru')->orderBy('nama_lengkap', 'asc')->get();
 
         $data = [
-            'page_title' => 'User Management | Admin',
+            'page_title' => 'User Management | Guru',
             'lists'      => $lists,
         ];
-        return view('pages.admin.user.admin.main', $data);
+        return view('pages.admin.user.guru.main', $data);
     }
 
     /**
@@ -28,9 +28,9 @@ class UserAdminController extends Controller
     public function create()
     {
         $data = [
-            'page_title' => 'User Management | Create Admin',
+            'page_title' => 'User Management | Create Guru',
         ];
-        return view('pages.admin.user.admin.form', $data);
+        return view('pages.admin.user.guru.form', $data);
     }
 
     /**
@@ -39,22 +39,22 @@ class UserAdminController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'nama_lengkap' => 'required',
             'email'        => 'required',
-            'no_hp'        => 'required',
             'password'     => 'required|confirmed',
+            'nama_lengkap' => 'required',
+            'no_hp'        => 'required',
         ]);
 
         User::create([
-            'nama_lengkap' => $request->nama_lengkap,
             'email'        => $request->email,
-            'no_hp'        => $request->no_hp,
             'password'     => $request->password,
-            'role'         => 'admin',
+            'nama_lengkap' => $request->nama_lengkap,
+            'no_hp'        => $request->no_hp,
+            'role'         => 'guru',
             'created_by'   => Auth::user()->id,
         ]);
 
-        return redirect()->route('admin.user.admin')->with('success', 'Create Success');
+        return redirect()->route('admin.user.guru')->with('success', 'Create Success');
     }
 
     /**
@@ -72,10 +72,10 @@ class UserAdminController extends Controller
     {
         $lists       = User::findOrFail($id);
         $data        = [
-            'page_title' => 'User Management | Edit Admin',
+            'page_title' => 'User Management | Edit Guru',
             'lists'      => $lists,
         ];
-        return view('pages.admin.user.admin.form_edit', $data);
+        return view('pages.admin.user.guru.form_edit', $data);
     }
 
     /**
@@ -89,8 +89,8 @@ class UserAdminController extends Controller
         ]);
 
         User::where('id', $id)->update([
-            'nama_lengkap' => $request->nama_lengkap,
-            'no_hp'        => $request->no_hp,
+            'nama_lengkap'          => $request->nama_lengkap,
+            'no_hp'                 => $request->no_hp,
             'updated_by'   => Auth::user()->id,
         ]);
 
@@ -99,7 +99,7 @@ class UserAdminController extends Controller
             Auth::user()->no_hp        = $request->no_hp;
         }
 
-        return redirect()->route('admin.user.admin')->with('success', 'Update Success');
+        return redirect()->route('admin.user.guru')->with('success', 'Update Success');
     }
 
     /**
@@ -112,7 +112,7 @@ class UserAdminController extends Controller
         $exec->save();
         $exec->delete();
 
-        return redirect()->route('admin.user.admin')->with('success', 'Destroy Success');
+        return redirect()->route('admin.user.guru')->with('success', 'Destroy Success');
     }
 
     /**
@@ -122,10 +122,10 @@ class UserAdminController extends Controller
     {
         $lists       = User::findOrFail($id);
         $data        = [
-            'page_title' => 'User Management | Reset Password Admin',
+            'page_title' => 'User Management | Reset Password Guru',
             'lists'      => $lists,
         ];
-        return view('pages.admin.user.admin.form_reset', $data);
+        return view('pages.admin.user.guru.form_reset', $data);
     }
 
     public function reset_password(Request $request, string $id)
@@ -139,6 +139,6 @@ class UserAdminController extends Controller
             'updated_by' => Auth::user()->id,
         ]);
 
-        return redirect()->route('admin.user.admin')->with('success', 'Reset Success');
+        return redirect()->route('admin.user.guru')->with('success', 'Reset Success');
     }
 }

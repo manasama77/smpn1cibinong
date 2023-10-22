@@ -13,7 +13,9 @@ class SubBankSoal extends Model
         'master_bank_soal_id',
         'tipe_pertanyaan',
         'pertanyaan',
+        'gambar',
         'essay_bobot',
+        'temp',
     ];
 
     protected $hidden = [
@@ -28,7 +30,7 @@ class SubBankSoal extends Model
 
     public function pg_bank_soal()
     {
-        return $this->hasMany(PgBankSoal::class)->where('tipe_pertanyaan', 'pg');
+        return $this->hasOne(PgBankSoal::class);
     }
 
     public function jawaban_ujian()

@@ -14,10 +14,12 @@ return new class extends Migration
     {
         Schema::create('sub_bank_soals', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(MasterBankSoal::class);
+            $table->foreignIdFor(MasterBankSoal::class)->nullable();
             $table->enum('tipe_pertanyaan', ['pg', 'essay']);
             $table->longText('pertanyaan');
+            $table->string('gambar')->nullable();
             $table->integer('essay_bobot')->unsigned()->default(0);
+            $table->string('temp');
             $table->timestamps();
         });
     }

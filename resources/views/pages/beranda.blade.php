@@ -76,51 +76,31 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-6 col-lg-4 d-flex align-items-stretch mb-5 mb-lg-0">
-                        <div class="card">
-                            <img src="{{ asset('storage/blog/sample.jpg') }}" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Judul</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                    of the card's content.</p>
-                                <a href="#" class="btn btn-primary btn-sm">Baca Selengkapnya</a>
+                    @foreach ($informasi_kegiatan as $k)
+                        <div class="col-md-6 col-lg-4 d-flex align-items-stretch mb-5 mb-lg-0">
+                            <div class="card">
+                                {!! $k->banner_url_fe !!}
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ $k->judul }}</h5>
+                                    <p class="card-text">{{ $k->description_limit }}</p>
+                                    <a href="{{ route('informasi_kegiatan.detail', $k->slug) }}" target="_blank"
+                                        class="btn btn-primary btn-sm">Baca Selengkapnya</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4 d-flex align-items-stretch mb-5 mb-lg-0">
-                        <div class="card">
-                            <img src="{{ asset('storage/blog/sample.jpg') }}" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Judul</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                    of the card's content.</p>
-                                <a href="#" class="btn btn-primary btn-sm">Baca Selengkapnya</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-md-6 col-lg-4 d-flex align-items-stretch mb-5 mb-lg-0">
-                        <div class="card">
-                            <img src="{{ asset('storage/blog/sample.jpg') }}" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Judul</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk
-                                    of the card's content.</p>
-                                <a href="#" class="btn btn-primary btn-sm">Baca Selengkapnya</a>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
 
                 </div>
 
-                <div class="row">
-                    <div class="col-12 d-flex justify-content-center my-4">
-                        <a href="" class="btn btn-primary btn-lg">
-                            Informasi Kegiatan Lainnya
-                        </a>
+                @if ($informasi_kegiatan_count > 6)
+                    <div class="row">
+                        <div class="col-12 d-flex justify-content-center my-4">
+                            <a href="{{ route('informasi_kegiatan') }}" class="btn btn-primary btn-lg">
+                                Informasi Kegiatan Lainnya
+                            </a>
+                        </div>
                     </div>
-                </div>
+                @endif
 
             </div>
         </section><!-- End Services Section -->
@@ -136,23 +116,30 @@
 
                 <div class="row portfolio-container">
 
-                    @for ($i = 0; $i < 6; $i++)
+                    @foreach ($galeri as $g)
                         <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-                            <img src="{{ asset('storage/gallery/sample.png') }}" class="img-fluid" alt="">
+                            {!! $g->foto_url_fe !!}
                             <div class="portfolio-info">
-                                <h4>Lorem ipsum dolor sit amet, consectetur adipisicing elit. In aspernatur quidem,
-                                    perspiciatis
-                                    ut suscipit culpa.</h4>
-                                <a href="{{ asset('storage/gallery/sample.png') }}" data-gallery="portfolioGallery"
-                                    class="portfolio-lightbox preview-link details-link"
-                                    title="Lorem ipsum dolor sit amet, consectetur adipisicing elit. In aspernatur quidem, perspiciatis ut suscipit culpa.">
+                                <h4>{{ $g->description }}</h4>
+                                <a href="{{ asset('storage/' . $g->foto) }}" data-gallery="portfolioGallery"
+                                    class="portfolio-lightbox preview-link details-link" title="{{ $g->description }}">
                                     <i class="fas fa-eye"></i>
                                 </a>
                             </div>
                         </div>
-                    @endfor
+                    @endforeach
 
                 </div>
+
+                @if ($galeri_count > 6)
+                    <div class="row">
+                        <div class="col-12 d-flex justify-content-center my-4">
+                            <a href="{{ route('galeri') }}" class="btn btn-primary btn-lg">
+                                Galeri Lainnya
+                            </a>
+                        </div>
+                    </div>
+                @endif
 
             </div>
         </section><!-- End Portfolio Section -->

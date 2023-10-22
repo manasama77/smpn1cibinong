@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('no_hp');
             $table->string('no_ktp_orang_tua_wali')->nullable();
             $table->string('nama_orang_tua_wali')->nullable();
-            $table->string('no_hp_orang_tua')->nullable();
+            $table->string('no_hp_orang_tua_wali')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

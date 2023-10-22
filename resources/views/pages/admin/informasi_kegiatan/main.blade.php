@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">User management | Admin</h1>
+                    <h1 class="m-0">{{ $page_title }}</h1>
                 </div><!-- /.col -->
             </div>
         </div>
@@ -15,7 +15,7 @@
         <div class="container-fluid">
             <div class="card">
                 <div class="card-body">
-                    <a href="{{ route('admin.user.admin.create') }}" class="btn btn-primary mb-3">
+                    <a href="{{ route('admin.informasi_kegiatan.create') }}" class="btn btn-primary mb-3">
                         <i class="fas fa-fw fa-plus"></i> Create
                     </a>
 
@@ -29,8 +29,10 @@
                         <table id="v_table" class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th>Nama Lengkap</th>
-                                    <th>Email</th>
+                                    <th class="text-center">Banner</th>
+                                    <th>Judul</th>
+                                    <th class="text-center">Status</th>
+                                    <th>URL</th>
                                     <th class="text-center">
                                         <i class="fas fa-cogs"></i>
                                     </th>
@@ -39,28 +41,26 @@
                             <tbody>
                                 @foreach ($lists as $l)
                                     <tr>
-                                        <td>{{ $l->nama_lengkap }}</td>
-                                        <td>{{ $l->email }}</td>
+                                        <td class="text-center">{!! $l->banner_url !!}</td>
+                                        <td>{{ $l->judul }}</td>
+                                        <td class="text-center">{!! $l->active_badge !!}</td>
+                                        <td>{!! $l->slug_url !!}</td>
                                         <td class="text-center">
-                                            <a href="{{ route('admin.user.admin.edit', $l->id) }}" class="btn btn-info">
+                                            <a href="{{ route('admin.informasi_kegiatan.edit', $l->id) }}"
+                                                class="btn btn-info">
                                                 <i class="fas fa-fw fa-pencil"></i>
                                             </a>
-                                            @if (auth()->user()->id != $l->id)
-                                                <button type="button" class="btn btn-danger"
-                                                    onclick="askDelete({{ $l->id }}, '{{ $l->nama_lengkap }}')">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                                <form id="form_delete_{{ $l->id }}"
-                                                    action="{{ route('admin.user.admin.destroy', $l->id) }}" method="post"
-                                                    style="display: none">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit"></button>
-                                                </form>
-                                            @endif
-                                            <a href="{{ route('admin.user.admin.reset', $l->id) }}" class="btn btn-dark">
-                                                <i class="fas fa-fw fa-key"></i>
-                                            </a>
+                                            <button type="button" class="btn btn-danger"
+                                                onclick="askDelete({{ $l->id }}, '{{ $l->name }}')">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                            <form id="form_delete_{{ $l->id }}"
+                                                action="{{ route('admin.informasi_kegiatan.destroy', $l->id) }}"
+                                                method="post" style="display: none">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"></button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach

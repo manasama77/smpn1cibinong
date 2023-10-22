@@ -31,7 +31,12 @@
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        @include('partials.dashboard.sidebar')
+        @if (auth()->user()->role == 'admin')
+            @include('partials.dashboard.sidebar')
+        @endif
+        @if (auth()->user()->role == 'siswa')
+            @include('partials.dashboard.sidebar_siswa')
+        @endif
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
@@ -58,6 +63,13 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.datatables.net/v/dt/dt-1.13.6/b-2.4.2/b-html5-2.4.2/datatables.min.js"></script>
 
+    <script>
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    </script>
     @yield('skrip_jawa')
 </body>
 

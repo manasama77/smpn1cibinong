@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">User management | Admin</h1>
+                    <h1 class="m-0">User management | Siswa</h1>
                 </div><!-- /.col -->
             </div>
         </div>
@@ -15,7 +15,7 @@
         <div class="container-fluid">
             <div class="card">
                 <div class="card-body">
-                    <a href="{{ route('admin.user.admin.create') }}" class="btn btn-primary mb-3">
+                    <a href="{{ route('admin.user.siswa.create') }}" class="btn btn-primary mb-3">
                         <i class="fas fa-fw fa-plus"></i> Create
                     </a>
 
@@ -26,12 +26,18 @@
                     @endif
 
                     <div class="table-responsive">
-                        <table id="v_table" class="table table-bordered">
+                        <table id="v_table" class="table table-bordered w-100">
                             <thead>
                                 <tr>
                                     <th>Nama Lengkap</th>
                                     <th>Email</th>
-                                    <th class="text-center">
+                                    <th>Kelas</th>
+                                    <th>NISN</th>
+                                    <th>No HP</th>
+                                    <th>Nama Orang Tua / Wali</th>
+                                    <th>KTP Orang Tua / Wali</th>
+                                    <th>No HP Orang Tua / Wali</th>
+                                    <th class="text-center" style="min-width: 180px;">
                                         <i class="fas fa-cogs"></i>
                                     </th>
                                 </tr>
@@ -41,24 +47,28 @@
                                     <tr>
                                         <td>{{ $l->nama_lengkap }}</td>
                                         <td>{{ $l->email }}</td>
+                                        <td>{{ $l->kelas }}</td>
+                                        <td>{{ $l->nisn }}</td>
+                                        <td>{{ $l->no_hp }}</td>
+                                        <td>{{ $l->nama_orang_tua_wali }}</td>
+                                        <td>{{ $l->no_ktp_orang_tua_wali }}</td>
+                                        <td>{{ $l->no_hp_orang_tua_wali }}</td>
                                         <td class="text-center">
-                                            <a href="{{ route('admin.user.admin.edit', $l->id) }}" class="btn btn-info">
+                                            <a href="{{ route('admin.user.siswa.edit', $l->id) }}" class="btn btn-info">
                                                 <i class="fas fa-fw fa-pencil"></i>
                                             </a>
-                                            @if (auth()->user()->id != $l->id)
-                                                <button type="button" class="btn btn-danger"
-                                                    onclick="askDelete({{ $l->id }}, '{{ $l->nama_lengkap }}')">
-                                                    <i class="fas fa-trash"></i>
-                                                </button>
-                                                <form id="form_delete_{{ $l->id }}"
-                                                    action="{{ route('admin.user.admin.destroy', $l->id) }}" method="post"
-                                                    style="display: none">
-                                                    @csrf
-                                                    @method('DELETE')
-                                                    <button type="submit"></button>
-                                                </form>
-                                            @endif
-                                            <a href="{{ route('admin.user.admin.reset', $l->id) }}" class="btn btn-dark">
+                                            <button type="button" class="btn btn-danger"
+                                                onclick="askDelete({{ $l->id }}, '{{ $l->nama_lengkap }}')">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                            <form id="form_delete_{{ $l->id }}"
+                                                action="{{ route('admin.user.siswa.destroy', $l->id) }}" method="post"
+                                                style="display: none">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"></button>
+                                            </form>
+                                            <a href="{{ route('admin.user.siswa.reset', $l->id) }}" class="btn btn-dark">
                                                 <i class="fas fa-fw fa-key"></i>
                                             </a>
                                         </td>

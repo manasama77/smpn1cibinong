@@ -28,7 +28,7 @@ class User extends Authenticatable
         'no_hp',
         'no_ktp_orang_tua_wali',
         'nama_orang_tua_wali',
-        'no_hp_orang_tua',
+        'no_hp_orang_tua_wali',
         'created_by',
         'updated_by',
         'deleted_by',

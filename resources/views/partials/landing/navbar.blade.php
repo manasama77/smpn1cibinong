@@ -19,7 +19,7 @@
                 <li><a class="nav-link {{ request()->route()->named('galeri')? 'active': '' }}"
                         href="{{ route('galeri') }}">Galeri</a></li>
 
-                @if (!auth()->user()->id)
+                @if (!auth()->user())
                     <li>
                         <a class="nav-link w-100" href="{{ route('login') }}">
                             Login
@@ -27,7 +27,7 @@
                     </li>
                 @endif
 
-                @if (auth()->user()->role == 'admin')
+                @if (auth()->user() && auth()->user()->role == 'admin')
                     <li>
                         <a class="nav-link w-100" href="{{ route('admin.dashboard') }}">
                             Admin Panel
@@ -35,15 +35,15 @@
                     </li>
                 @endif
 
-                @if (auth()->user()->role == 'siswa')
+                @if (auth()->user() && auth()->user()->role == 'siswa')
                     <li>
-                        <a class="nav-link w-100" href="{{ route('login') }}">
+                        <a class="nav-link w-100" href="{{ route('siswa.dashboard') }}">
                             Ujian
                         </a>
                     </li>
                 @endif
 
-                @if (in_array(auth()->user()->role, ['guru', 'kepala sekolah']))
+                @if (auth()->user() && in_array(auth()->user()->role, ['guru', 'kepala sekolah']))
                     <li>
                         <a class="nav-link w-100" href="{{ route('login') }}">
                             Bank Soal
@@ -51,7 +51,7 @@
                     </li>
                 @endif
 
-                @if (auth()->user()->role == 'orang tua')
+                @if (auth()->user() && auth()->user()->role == 'orang tua')
                     <li>
                         <a class="nav-link w-100" href="{{ route('login') }}">
                             Siswa

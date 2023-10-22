@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
             'no_hp'                 => '082114578976',
             'no_ktp_orang_tua_wali' => null,
             'nama_orang_tua_wali'   => null,
-            'no_hp_orang_tua'       => null,
+            'no_hp_orang_tua_wali'  => null,
             'created_by'            => 1,
         ]);
     }

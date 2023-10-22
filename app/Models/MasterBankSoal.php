@@ -2,9 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class MasterBankSoal extends Model
 {
@@ -40,6 +41,25 @@ class MasterBankSoal extends Model
 
     public function ujian()
     {
-        return $this->hasMany(Ujian::class);
+        return $this->hasOne(Ujian::class);
+    }
+
+    public function creator()
+    {
+        return $this->belongsTo(User::class, 'created_by', 'id');
+    }
+
+    public function getStartDatetimeIndAttribute()
+    {
+        $start_datetime = $this->getRawOriginal('start_datetime');
+        $tgl            = Carbon::parse($start_datetime)->isoFormat('D MMMM Y HH:mm');
+        return $tgl;
+    }
+
+    public function getEndDatetimeIndAttribute()
+    {
+        $end_datetime = $this->getRawOriginal('end_datetime');
+        $tgl            = Carbon::parse($end_datetime)->isoFormat('D MMMM Y HH:mm');
+        return $tgl;
     }
 }
