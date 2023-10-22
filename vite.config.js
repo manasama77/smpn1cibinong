@@ -23,6 +23,12 @@ export default defineConfig({
                 'resources/vendor/swiper/swiper-bundle.min.js',
                 'resources/vendor/php-email-form/validate.js',
                 'resources/js/landing_page.js',
+
+                'resources/sass/login.scss',
+
+                'resources/adminlte/css/adminlte.css',
+                'resources/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js',
+                'resources/adminlte/js/adminlte.js',
             ],
             refresh: true,
         }),

@@ -8,8 +8,7 @@
         <nav id="navbar" class="navbar">
             <ul>
                 <li>
-                    <a class="nav-link {{ request()->route()->named('home')? 'active': '' }}"
-                        href="{{ route('home') }}">
+                    <a class="nav-link" href="{{ route('home') }}">
                         Beranda
                     </a>
                 </li>
@@ -19,11 +18,46 @@
                         href="{{ route('informasi_kegiatan') }}">Informasi Kegiatan</a></li>
                 <li><a class="nav-link {{ request()->route()->named('galeri')? 'active': '' }}"
                         href="{{ route('galeri') }}">Galeri</a></li>
-                <li>
-                    <a class="nav-link w-100" href="{{ route('login') }}">
-                        Login
-                    </a>
-                </li>
+
+                @if (!auth()->user()->id)
+                    <li>
+                        <a class="nav-link w-100" href="{{ route('login') }}">
+                            Login
+                        </a>
+                    </li>
+                @endif
+
+                @if (auth()->user()->role == 'admin')
+                    <li>
+                        <a class="nav-link w-100" href="{{ route('admin.dashboard') }}">
+                            Admin Panel
+                        </a>
+                    </li>
+                @endif
+
+                @if (auth()->user()->role == 'siswa')
+                    <li>
+                        <a class="nav-link w-100" href="{{ route('login') }}">
+                            Ujian
+                        </a>
+                    </li>
+                @endif
+
+                @if (in_array(auth()->user()->role, ['guru', 'kepala sekolah']))
+                    <li>
+                        <a class="nav-link w-100" href="{{ route('login') }}">
+                            Bank Soal
+                        </a>
+                    </li>
+                @endif
+
+                @if (auth()->user()->role == 'orang tua')
+                    <li>
+                        <a class="nav-link w-100" href="{{ route('login') }}">
+                            Siswa
+                        </a>
+                    </li>
+                @endif
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav><!-- .navbar -->

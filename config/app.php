@@ -185,6 +185,7 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
-    'developer' => 'Vegokode'
+    'developer' => 'Vegokode',
+    'version' => '1.0.0',
 
 ];
