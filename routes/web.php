@@ -1,19 +1,20 @@
 <?php
 
-use App\Http\Controllers\AdminDashboardController;
-use App\Http\Controllers\BankSoalController;
-use App\Http\Controllers\CountController;
-use App\Http\Controllers\GalerinController;
-use App\Http\Controllers\InformasiKegiatanController;
-use App\Http\Controllers\LandingPageController;
-use App\Http\Controllers\MapelController;
-use App\Http\Controllers\SiswaDashboardController;
-use App\Http\Controllers\UjianController;
-use App\Http\Controllers\UserAdminController;
-use App\Http\Controllers\UserGuruController;
-use App\Http\Controllers\UserSiswaController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
+use App\Http\Controllers\CountController;
+use App\Http\Controllers\MapelController;
+use App\Http\Controllers\UjianController;
+use App\Http\Controllers\GalerinController;
+use App\Http\Controllers\BankSoalController;
+use App\Http\Controllers\UserGuruController;
+use App\Http\Controllers\UserAdminController;
+use App\Http\Controllers\UserSiswaController;
+use App\Http\Controllers\LandingPageController;
+use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\SiswaDashboardController;
+use App\Http\Controllers\InformasiKegiatanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -128,3 +129,7 @@ Route::group(['prefix' => 'siswa', 'middleware' => 'auth'], function () {
 });
 
 Route::post('/informasi_kegiatan/upload', [InformasiKegiatanController::class, 'upload'])->name('informasi_kegiatan.upload');
+
+Route::get('/foo', function () {
+    Artisan::call('storage:link');
+});

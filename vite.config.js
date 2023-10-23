@@ -5,8 +5,8 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
-                'resources/sass/app.scss',
-                'resources/js/app.js',
+                // 'resources/sass/app.scss',
+                // 'resources/js/app.js',
 
                 'resources/css/landing/style.css',
                 'resources/sass/landing_custom.scss',
@@ -27,8 +27,6 @@ export default defineConfig({
                 'resources/sass/login.scss',
 
                 'resources/adminlte/css/adminlte.css',
-                'resources/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js',
-                'resources/adminlte/js/adminlte.js',
             ],
             refresh: true,
         }),

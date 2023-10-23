@@ -20,7 +20,7 @@
     <!-- Theme style -->
     {{-- <link rel="stylesheet" href="{{ asset('asset/adminlte/css/adminlte.min.css') }}"> --}}
 
-    @vite(['resources/adminlte/css/adminlte.css', 'resources/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js', 'resources/adminlte/js/adminlte.js'])
+    @vite(['resources/adminlte/css/adminlte.css'])
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -62,6 +62,8 @@
     <script src="https://cdn.jsdelivr.net/npm/block-ui@2.70.1/jquery.blockUI.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.datatables.net/v/dt/dt-1.13.6/b-2.4.2/b-html5-2.4.2/datatables.min.js"></script>
+    <script src="{{ asset('assets/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ asset('assets/adminlte/js/adminlte.js') }}"></script>
 
     <script>
         $.ajaxSetup({
