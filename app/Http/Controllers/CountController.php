@@ -29,11 +29,11 @@ class CountController extends Controller
             }
 
             if ($u->role == "siswa") {
-                $count_admin++;
+                $count_siswa++;
             }
 
             if ($u->role == "guru") {
-                $count_admin++;
+                $count_guru++;
             }
         }
 

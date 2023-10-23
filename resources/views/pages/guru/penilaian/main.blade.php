@@ -22,23 +22,16 @@
                         </div>
                     @endif
 
-                    @if (session('warning'))
-                        <div class="alert alert-warning">
-                            {{ session('warning') }}
-                        </div>
-                    @endif
-
                     <div class="table-responsive">
                         <table id="v_table" class="table table-bordered">
                             <thead>
                                 <tr>
-                                    <th>MAPEL</th>
                                     <th>Kelas</th>
-                                    <th>Waktu Mulai</th>
-                                    <th>Waktu Berakhir</th>
-                                    <th>Dibuat oleh</th>
+                                    <th>Siswa</th>
+                                    <th>Total Nilai</th>
+                                    <th>Nilai PG</th>
+                                    <th>Nilai Essay</th>
                                     <th>Tanggal & Jam Submit</th>
-                                    <th>Nilai</th>
                                     <th class="text-center">
                                         <i class="fas fa-cogs"></i>
                                     </th>
@@ -47,15 +40,14 @@
                             <tbody>
                                 @foreach ($lists as $l)
                                     <tr>
-                                        <td>{{ $l->master_mapel->name }}</td>
-                                        <td>{{ $l->kelas }}</td>
-                                        <td>{{ $l->start_datetime_ind }}</td>
-                                        <td>{{ $l->end_datetime_ind }}</td>
-                                        <td>{{ $l->creator->nama_lengkap }}</td>
-                                        <td>{{ $l->ujian->created_at ?? '' }}</td>
-                                        <td>{{ $l->ujian->total_nilai ?? 0 }}</td>
+                                        <td>{{ $l->user->kelas }}</td>
+                                        <td>{{ $l->user->nama_lengkap }}</td>
+                                        <td>{{ $l->total_nilai }}</td>
+                                        <td>{{ $l->nilai_pg }}</td>
+                                        <td>{{ $l->nilai_essay }}</td>
+                                        <td>{{ $l->created_at ?? '' }}</td>
                                         <td class="text-center">
-                                            <a href="{{ route('siswa.ujian.show', $l->slug) }}" class="btn btn-info">
+                                            <a href="{{ route('guru.penilaian.siswa', $l->id) }}" class="btn btn-success">
                                                 <i class="fas fa-fw fa-eye"></i>
                                             </a>
                                         </td>

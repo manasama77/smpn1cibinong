@@ -113,6 +113,24 @@ class UjianController extends Controller
             ]);
         }
 
+        $soal_essay = SubBankSoal::with('pg_bank_soal')->where([
+            'master_bank_soal_id' => $master_bank_soal_id,
+            'tipe_pertanyaan'     => 'essay',
+        ])->get();
+        foreach ($soal_essay as $p) {
+            $id      = $p->id;
+            $jawaban = $request->{'jawaban_' . $id};
+
+            JawabanUjian::create([
+                'ujian_id'         => $ujian_id,
+                'sub_bank_soal_id' => $id,
+                'tipe_pertanyaan'  => 'essay',
+                'answer'           => $jawaban,
+                'pg_bobot'         => 0,
+                'essay_bobot'      => 0,
+            ]);
+        }
+
         Ujian::where('id', $ujian_id)->update([
             'total_nilai' => $total_nilai,
             'nilai_pg'    => $nilai_pg,

@@ -39,6 +39,16 @@ class MasterBankSoal extends Model
         return $this->hasMany(SubBankSoal::class);
     }
 
+    public function sub_bank_soal_pg()
+    {
+        return $this->hasMany(SubBankSoal::class)->where('tipe_pertanyaan', 'pg');
+    }
+
+    public function sub_bank_soal_essay()
+    {
+        return $this->hasMany(SubBankSoal::class)->where('tipe_pertanyaan', 'essay');
+    }
+
     public function ujian()
     {
         return $this->hasOne(Ujian::class);

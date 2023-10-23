@@ -34,9 +34,9 @@
                                     <th>Waktu Mulai</th>
                                     <th>Waktu Berakhir</th>
                                     <th>Dibuat oleh</th>
-                                    {{-- <th class="text-center">
+                                    <th class="text-center">
                                         <i class="fas fa-cogs"></i>
-                                    </th> --}}
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -47,8 +47,11 @@
                                         <td>{{ $l->start_datetime_ind }}</td>
                                         <td>{{ $l->end_datetime_ind }}</td>
                                         <td>{{ $l->creator->nama_lengkap }}</td>
-                                        {{-- <td class="text-center">
-                                            <a href="{{ route('admin.bank_soal.edit', $l->id) }}" class="btn btn-info">
+                                        <td class="text-center">
+                                            <a href="{{ route('guru.penilaian', $l->id) }}" class="btn btn-success">
+                                                <i class="fas fa-fw fa-eye"></i>
+                                            </a>
+                                            {{-- <a href="{{ route('admin.bank_soal.edit', $l->id) }}" class="btn btn-info">
                                                 <i class="fas fa-fw fa-pencil"></i>
                                             </a>
                                             <button type="button" class="btn btn-danger"
@@ -61,8 +64,8 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit"></button>
-                                            </form>
-                                        </td> --}}
+                                            </form> --}}
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

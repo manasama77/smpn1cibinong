@@ -13,8 +13,10 @@ use App\Http\Controllers\UserAdminController;
 use App\Http\Controllers\UserSiswaController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\GuruDashboardController;
 use App\Http\Controllers\SiswaDashboardController;
 use App\Http\Controllers\InformasiKegiatanController;
+use App\Http\Controllers\PenilaianController;
 
 /*
 |--------------------------------------------------------------------------
@@ -126,6 +128,14 @@ Route::group(['prefix' => 'siswa', 'middleware' => 'auth'], function () {
     Route::get('/ujian', [UjianController::class, 'index'])->name('siswa.ujian');
     Route::get('/ujian/show/{slug}', [UjianController::class, 'show'])->name('siswa.ujian.show');
     Route::post('/ujian/store', [UjianController::class, 'store'])->name('siswa.ujian.store');
+});
+
+Route::group(['prefix' => 'guru', 'middleware' => 'auth'], function () {
+    Route::get('/dashboard', [GuruDashboardController::class, 'index'])->name('guru.dashboard');
+
+    Route::get('/penilaian/{id}', [PenilaianController::class, 'index'])->name('guru.penilaian');
+    Route::get('/penilaian/siswa/{id}', [PenilaianController::class, 'siswa'])->name('guru.penilaian.siswa');
+    Route::post('/penilaian/siswa/essay/{jawaban_ujian_id}', [PenilaianController::class, 'store_nilai_essay'])->name('guru.penilaian.siswa.essay');
 });
 
 Route::post('/informasi_kegiatan/upload', [InformasiKegiatanController::class, 'upload'])->name('informasi_kegiatan.upload');

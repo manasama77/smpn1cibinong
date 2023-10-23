@@ -32,8 +32,13 @@ class Ujian extends Model
         return $this->belongsTo(MasterBankSoal::class);
     }
 
-    public function jawaban_ujian()
+    public function jawaban_ujian_pg()
     {
-        return $this->hasMany(JawabanUjian::class);
+        return $this->hasMany(JawabanUjian::class)->where('tipe_pertanyaan', 'pg');
+    }
+
+    public function jawaban_ujian_essay()
+    {
+        return $this->hasMany(JawabanUjian::class)->where('tipe_pertanyaan', 'essay');
     }
 }

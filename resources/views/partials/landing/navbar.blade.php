@@ -45,7 +45,7 @@
 
                 @if (auth()->user() && in_array(auth()->user()->role, ['guru', 'kepala sekolah']))
                     <li>
-                        <a class="nav-link w-100" href="{{ route('login') }}">
+                        <a class="nav-link w-100" href="{{ route('guru.dashboard') }}">
                             Bank Soal
                         </a>
                     </li>

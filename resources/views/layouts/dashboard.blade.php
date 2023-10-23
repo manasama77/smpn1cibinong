@@ -45,6 +45,9 @@
         @if (auth()->user()->role == 'siswa')
             @include('partials.dashboard.sidebar_siswa')
         @endif
+        @if (auth()->user()->role == 'guru')
+            @include('partials.dashboard.sidebar_guru')
+        @endif
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
