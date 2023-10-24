@@ -42,7 +42,7 @@
                             <tbody>
                                 @foreach ($lists as $l)
                                     <tr>
-                                        <td>{{ $l->master_mapel->name }}</td>
+                                        <td>{{ $l->master_mapel->name ?? '' }}</td>
                                         <td>{{ $l->kelas }}</td>
                                         <td>{{ $l->start_datetime_ind }}</td>
                                         <td>{{ $l->end_datetime_ind }}</td>
@@ -53,18 +53,20 @@
                                             </a>
                                             {{-- <a href="{{ route('admin.bank_soal.edit', $l->id) }}" class="btn btn-info">
                                                 <i class="fas fa-fw fa-pencil"></i>
-                                            </a>
-                                            <button type="button" class="btn btn-danger"
-                                                onclick="askDelete({{ $l->id }}, '{{ $l->name }}')">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                            <form id="form_delete_{{ $l->id }}"
-                                                action="{{ route('admin.bank_soal.destroy', $l->id) }}" method="post"
-                                                style="display: none">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="submit"></button>
-                                            </form> --}}
+                                            </a> --}}
+                                            @if (auth()->user()->role == 'admin')
+                                                <button type="button" class="btn btn-danger"
+                                                    onclick="askDelete({{ $l->id }}, '{{ $l->name }}')">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                                <form id="form_delete_{{ $l->id }}"
+                                                    action="{{ route('admin.bank_soal.destroy', $l->id) }}" method="post"
+                                                    style="display: none">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit"></button>
+                                                </form>
+                                            @endif
                                         </td>
                                     </tr>
                                 @endforeach

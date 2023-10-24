@@ -141,5 +141,8 @@ Route::group(['prefix' => 'guru', 'middleware' => 'auth'], function () {
 Route::post('/informasi_kegiatan/upload', [InformasiKegiatanController::class, 'upload'])->name('informasi_kegiatan.upload');
 
 Route::get('/foo', function () {
-    Artisan::call('storage:link');
+    // Artisan::call('storage:link');
+    $target   = '/home/public_html/storage/app/public';
+    $shortcut = '/home/public_html/public/storage';
+    symlink($target, $shortcut);
 });

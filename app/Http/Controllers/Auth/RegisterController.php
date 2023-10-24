@@ -50,9 +50,15 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'nama_lengkap'          => ['required', 'string', 'max:255'],
+            'email'                 => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password'              => ['required', 'string', 'min:8', 'confirmed'],
+            'kelas'                 => ['required'],
+            'nisn'                  => ['required'],
+            'no_hp'                 => ['required'],
+            'nama_orang_tua_wali'   => ['required', 'string', 'max:255'],
+            'no_ktp_orang_tua_wali' => ['required'],
+            'no_hp_orang_tua_wali'  => ['required'],
         ]);
     }
 
@@ -65,9 +71,16 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
+            'nama_lengkap'          => $data['nama_lengkap'],
+            'email'                 => $data['email'],
+            'password'              => Hash::make($data['password']),
+            'kelas'                 => $data['kelas'],
+            'no_hp'                 => $data['no_hp'],
+            'nisn'                  => $data['nisn'],
+            'no_hp_orang_tua_wali'  => $data['no_hp_orang_tua_wali'],
+            'no_ktp_orang_tua_wali' => $data['no_ktp_orang_tua_wali'],
+            'nama_orang_tua_wali'   => $data['nama_orang_tua_wali'],
+            'role'                  => 'siswa',
         ]);
     }
 }

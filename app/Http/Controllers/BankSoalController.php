@@ -122,7 +122,7 @@ class BankSoalController extends Controller
      */
     public function destroy(string $id)
     {
-        $exec             = MasterMapel::findOrFail($id);
+        $exec             = MasterBankSoal::findOrFail($id);
         $exec->deleted_by = Auth::user()->id;
         $exec->save();
         $exec->delete();
